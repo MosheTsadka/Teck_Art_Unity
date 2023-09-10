@@ -17,7 +17,7 @@ public class AnimationStateControllerSecond : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         // increases performance
-        _velocityHash = Animator.StringToHash("velocity");
+        _velocityHash = Animator.StringToHash("Velocity");
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class AnimationStateControllerSecond : MonoBehaviour
     {
         // get input from the player
         bool fowardPressed = Input.GetKey(KeyCode.W);
-        bool runPressed = Input.GetKey(KeyCode.LeftShift);
+        //bool runPressed = Input.GetKey(KeyCode.LeftShift);
 
         if (fowardPressed && _velocity < 1.0f )
         {
