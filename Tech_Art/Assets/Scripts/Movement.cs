@@ -4,6 +4,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private CharacterController cr;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float sprintSpeed;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHieght;
 
@@ -32,7 +33,9 @@ public class Movement : MonoBehaviour
     private void PlayerMovement()
     {
         Vector3 move = transform.right * _horInput + transform.forward * _verInput;
-        cr.Move(move * moveSpeed * Time.deltaTime);
+        bool sprintRun = Input.GetKey(KeyCode.LeftShift);
+        float currentMaxSpeed = sprintRun ? sprintSpeed : moveSpeed;
+        cr.Move(move * currentMaxSpeed * Time.deltaTime);
     }
 
     private void Jump()
