@@ -13,20 +13,22 @@ public class RayCastScript : MonoBehaviour
 
     private void Update()
     {
+        int layerMask = 6;
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 100f;
         mousePos = _cam.ScreenToWorldPoint(mousePos);
-        Debug.DrawRay(transform.position, mousePos - transform.position, Color.red);
+        Debug.DrawRay(transform.position, mousePos - transform.position, Color.blue);
 
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100, mask))
+            if (Physics.Raycast(ray, out hit, 100, layerMask))
             {
                 Debug.Log(hit.transform.name);
-                hit.transform.GetComponent<Renderer>().material.color = Color.red;
+                Debug.Log(hit.collider.gameObject.layer);
+                hit.transform.GetComponent<Renderer>().material.color = Random.ColorHSV();
             }
         }
     }
